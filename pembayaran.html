@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Ewallet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pembayaran DANA</h1>
+        <img src="Dana_Icon.png" alt="Logo Bank BRI" class="bank-logo">
+        <p>Silakan transfer ke nomor DANA berikut untuk paket <span id="paket"></span></p>
+
+        <div class="rekening">
+            <h2>Payment Via DANA</h2>
+            <p>
+                <strong>No Dana Ewallet:</strong> 
+                <span id="noRek">0882-4266-7044</span>
+                <button class="copy-btn" onclick="salinRekening()">
+                    <img src="copy-icon.png" alt="Salin" class="copy-icon">
+                </button>
+            </p>
+
+            <p><strong>Atas Nama:</strong> 0882-4266-7044</p>
+            <p><strong>Total Pembayaran:</strong> Rp <span id="harga"></span></p>
+            <p>Setelah transfer, silakan 
+                <a id="waLink" class="wa-link" target="_blank">konfirmasi pembayaran melalui WhatsApp</a>.
+            </p>
+
+            <p id="notif" class="notif"></p> <!-- Teks konfirmasi salin -->
+        </div>
+
+        <a href="index.html" class="btn">Kembali</a>
+    </div>
+
+    <script>
+        // Ambil parameter dari URL
+        const params = new URLSearchParams(window.location.search);
+        const paket = params.get("paket") || "Paket Tidak Diketahui";
+        let harga = params.get("harga") || "0";
+
+        // Format angka ke bentuk ribuan (contoh: 199000 -> 199.000)
+        harga = new Intl.NumberFormat("id-ID").format(harga);
+
+        // Tampilkan di halaman
+        document.getElementById("paket").textContent = paket;
+        document.getElementById("harga").textContent = harga;
+
+        // Fungsi untuk menyalin nomor rekening
+        function salinRekening() {
+            const nomorRekening = document.getElementById("noRek").textContent;
+            navigator.clipboard.writeText(nomorRekening).then(() => {
+                const notif = document.getElementById("notif");
+                notif.textContent = "Nomor Dana berhasil disalin.";
+                setTimeout(() => {
+                    notif.textContent = ""; // Hapus teks setelah 1 detik
+                }, 1000);
+            }).catch(err => {
+                document.getElementById("notif").textContent = "Gagal menyalin nomor Dana.";
+                console.error(err);
+            });
+        }
+
+        // Ganti dengan nomor WhatsApp kamu (format: 628XXXXXXXXXX)
+        const nomorWA = "6285822368273"; // Ganti dengan nomor WA-mu
+
+        const waPesan = encodeURIComponent(
+            `Halo, saya ingin konfirmasi pembayaran untuk paket data lisensi ${paket} sebesar Rp ${harga}.`
+        );
+        document.getElementById("waLink").href = `https://wa.me/${nomorWA}?text=${waPesan}`;
+    </script>
+</body>
+</html>
