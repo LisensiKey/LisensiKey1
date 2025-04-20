@@ -22,16 +22,19 @@
                 </button>
             </p>
 
-            <p><strong>Atas Nama:</strong> 0882-4266-7044</p>
-            <p><strong>Total Pembayaran:</strong> Rp <span id="harga"></span></p>
-            <p>Setelah transfer, silakan 
+            <p><strong>Atas Nama:</strong>
+            <span id="AtasNama">0882-4266-7044</span>
+            <p><strong>Total Pembayaran:</strong>
+            <span id="Rp"> Rp. </span>
+            <span id="harga"></span></p>
+            <p>Setelah transfer, Klik 
                 <a id="waLink" class="wa-link" target="_blank">konfirmasi pembayaran melalui WhatsApp</a>.
             </p>
 
             <p id="notif" class="notif"></p> <!-- Teks konfirmasi salin -->
         </div>
 
-        <a href="index.html" class="btn">Kembali</a>
+        <a href="index.html" class="btn">Back Home</a>
     </div>
 
     <script>
@@ -52,7 +55,7 @@
             const nomorRekening = document.getElementById("noRek").textContent;
             navigator.clipboard.writeText(nomorRekening).then(() => {
                 const notif = document.getElementById("notif");
-                notif.textContent = "Nomor Dana berhasil disalin.";
+                notif.textContent = "Nomor Dana disalin";
                 setTimeout(() => {
                     notif.textContent = ""; // Hapus teks setelah 1 detik
                 }, 1000);
