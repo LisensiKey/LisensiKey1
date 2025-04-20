@@ -67,6 +67,10 @@ h1 {
     border-radius: 5px;
     font-weight: bold;
     transition: background 0.3s;
+    box-shadow:
+    0px 6px 6px -3px #ffd700,
+    0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
 .btn:hover {
@@ -98,6 +102,33 @@ h1 {
 .bank-logo {
     width: 30px;
     margin: 20px 0;
+}
+
+#noRek {
+    font-size: 16px;      /* Bisa diubah jadi 28px kalau mau ekstra besar */
+    font-weight: bold;
+    color: #ffd700;       /* Warna emas biar nyala di background gelap */
+    letter-spacing: 1px;  /* Biar angka lebih rapi & enak dibaca */
+}
+
+#AtasNama {
+    font-size: 16px;      /* Bisa diubah jadi 28px kalau mau ekstra besar */
+    font-weight: bold;
+    color: #ffd700;       /* Warna emas biar nyala di background gelap */
+    letter-spacing: 1px;  /* Biar angka lebih rapi & enak dibaca */
+}
+
+/* Nilai nominal harga */
+#harga {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+#Rp {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fefefe;
 }
 
 .rekening {
